@@ -8,16 +8,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'haishanh/night-owl.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'itchyny/lightline.vim'
-" Plug 'skbolton/embark'
-Plug 'embark-theme/vim', {'as': 'embark'}
-" Plug 'embark-theme/vim', { 'branch': 'theme-cleanup', 'as': 'embark'}
-Plug 'morhetz/gruvbox'
+Plug 'skbolton/embark'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-fugitive'
 Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'lotabout/skim.vim'
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'justinmk/vim-sneak'
 Plug 'ervandew/supertab'
 Plug 'machakann/vim-highlightedyank'
@@ -30,12 +27,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'neomake/neomake'
 Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
-Plug 'ianks/vim-tsx'
-Plug 'mxw/vim-jsx'
-" Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
+
 "Initialize plugin system
 call plug#end()
 
@@ -98,8 +90,6 @@ set errorbells
 set splitbelow
 set splitright
 set showtabline=2
-let @+=42
-set clipboard=unnamedplus
 " Lightline
 
 
@@ -125,12 +115,12 @@ let g:TESTING_STATUS = 'passing'
 " nnoremap : ;
 nnoremap <leader>p :Files<CR>
 
-if executable('rg')
+if executable('rg') 
   set grepprg=rg\ --vimgrep\ --hidden\ -g\ !.git
 endif
 
 
-" Quickfix
+" Quickfix 
 nnoremap <silent> <UP> :cope<CR>
 nnoremap <silent> <DOWN> :cclose<CR>
 nnoremap <silent> <leader>cn :cnext<CR>
@@ -180,7 +170,7 @@ function! TestingStatus() abort
   endif
 endfunction
 function! FileNameWithIcon() abort
-  return winwidth(0) > 70  ?  WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t') : ''
+  return winwidth(0) > 70  ?  WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t') : '' 
 endfunction
 function! FileNameWithParent(f) abort
   if expand('%:t') ==# ''
@@ -204,10 +194,10 @@ function! StatusDiagnostic() abort
   if get(info, 'warning', 0)
     return info['warning'] . ""
   endif
-  return ""
+  return "" 
 endfunction
 let g:lightline = {}
-let g:lightline.active = {
+let g:lightline.active = { 
       \ 'left': [ ['mode', 'readonly'], ['filename_with_icon', 'modified']],
       \ 'right': [['lineinfo'], ['testing_status', 'status_diagnostic'] ]
       \ }
@@ -268,19 +258,11 @@ augroup END
 let g:test#preserve_screen = 0
 let g:neomake_open_list = 1
 
-" coc extensions
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier']
-
-
 "Linter
 let g:ale_linters = {
 \    'javascript': ['eslint'],
 \    'javascript.jsx': ['eslint'],
 \    'elixir': ['credo']
-\}
-let g:ale_fixers = {
-\   'javascript': ['prettier', 'eslint'],
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
@@ -293,14 +275,3 @@ let g:ale_elixir_credo_strict = 1
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = ""
 let g:ale_virtualtext_cursor = 1
-
-au BufNewFile,BufRead *.ts setlocal filetype=typescript
-au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
-
-" FORMATTERS
-au FileType javascript setlocal formatprg=prettier
-au FileType javascript.jsx setlocal formatprg=prettier
-au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-au FileType html setlocal formatprg=js-beautify\ --type\ html
-au FileType scss setlocal formatprg=prettier\ --parser\ css
-au FileType css setlocal formatprg=prettier\ --parser\ css
