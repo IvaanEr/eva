@@ -44,6 +44,8 @@ if (has("termguicolors"))
 endif
 
 syntax on
+filetype plugin indent on
+
 colorscheme embark
 
 
@@ -199,12 +201,14 @@ endfunction
 function! StatusDiagnostic() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   if get(info, 'error', 0)
-    return ""
+    return ""
   endif
   if get(info, 'warning', 0)
-    return info['warning'] . ""
+    return info['warning'] . "\ufad5"
   endif
-  return ""
+  return "\ufae0"
+  " return ""U+00BB
+
 endfunction
 let g:lightline = {}
 let g:lightline.active = {
@@ -301,6 +305,7 @@ au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 au FileType javascript setlocal formatprg=prettier
 au FileType javascript.jsx setlocal formatprg=prettier
 au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+au FileType typescript.tsx setlocal formatprg=prettier\ --parser\ typescript
 au FileType html setlocal formatprg=js-beautify\ --type\ html
 au FileType scss setlocal formatprg=prettier\ --parser\ css
 au FileType css setlocal formatprg=prettier\ --parser\ css
