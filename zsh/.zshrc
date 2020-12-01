@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ivaaner/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -107,7 +107,7 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-eval `dircolors /home/ivaaner/.dir_colors/dircolors`
+eval `dircolors /home/$USER/.dir_colors/dircolors`
 
 
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -115,7 +115,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export PATH="$PATH:$HOME/.skim/bin"
 export SKIM_DEFAULT_COMMAND="rg --files --hidden -g !.git"
 export SKIM_DEFAULT_OPTIONS="--reverse --ansi --color=fg:15,hl:03,hl+:03,matched_bg:-1,bg+:-1,fg+:-1,current_match_bg:-1,cursor:06,info:07,prompt:06"
-export PATH="$PATH:/home/ivaaner/.local/bin"
+export PATH="$PATH:/home/$USER/.local/bin"
 export GITHUB_TOKEN=19b4b9bc8aa670cc0c5c9b75f6835acd4b7a013b
 eval "$(direnv hook zsh)"
 
