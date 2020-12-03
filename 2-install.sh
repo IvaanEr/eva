@@ -2,14 +2,6 @@ print () {
  echo  "\e[1m\e[34m>>> $1\e[39m\e[0m"
 }
 
-print "Installing HomeBrew"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-echo "export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin" >> ~/.zshrc
-source ~/.zshrc
-
-sudo apt-get install build-essential
-
 print "Installing and configuring NeoVim"
 brew install neovim
 mkdir -p ~/.config/nvim/
@@ -24,7 +16,7 @@ git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$H
 
 print "Replace the zsh theme for this one ZSH_THEME=\"powerlevel10k/powerlevel10k\"."
 read -p "Press a key to continue."
-vim ~/.zshrc
+nvim ~/.zshrc
 print "done"
 
 print "Installing kitty Terminal"

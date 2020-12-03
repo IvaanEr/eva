@@ -11,4 +11,15 @@ print "done"
 
 print "Installing zsh"
 sudo apt install -y zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo Y | sudo sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sudo chsh -s $(which zsh) $USER
+print "done"
+
+
+print "Installing HomeBrew"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+sudo apt-get install build-essential
+echo "export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin" >> ~/.zshrc
+print "done"
+
+print "Please log out and when you log in you should have Zsh"
