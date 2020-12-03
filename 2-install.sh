@@ -42,6 +42,10 @@ print "Installing asdf"
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
   cd ~/.asdf
   git checkout "$(git describe --abbrev=0 --tags)"
+  cd -
+
+  echo ". $HOME/.asdf/asdf.sh" >> ~/.zshrc
+  source ~/.zshrc
 
   print "Installing plugins"
   sudo apt-get -y install build-essential autoconf m4 libncurses5-dev \
