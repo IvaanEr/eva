@@ -6,6 +6,7 @@ endif
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
+set nocompatible
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
@@ -15,8 +16,6 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'itchyny/lightline.vim'
 " Plug 'skbolton/embark'
 Plug 'embark-theme/vim', {'as': 'embark'}
-" Plug 'embark-theme/vim', { 'branch': 'theme-cleanup', 'as': 'embark'}
-Plug 'morhetz/gruvbox'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-fugitive'
 Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
@@ -41,6 +40,8 @@ Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'sheerun/vim-polyglot'
 "Initialize plugin system
 call plug#end()
 
@@ -131,6 +132,9 @@ let g:TESTING_STATUS = 'passing'
 " nnoremap ; :
 " nnoremap : ;
 nnoremap <leader>p :Files<CR>
+
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = ''
 
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --hidden\ -g\ !.git
